@@ -22,8 +22,8 @@ const Dashboard = ({ user }) => {
       try {
         const fetchedVehicles = await getUserVehicles();
         const fetchedBookings = await getUserBookings();
-        setVehicles(fetchedVehicles);
-        setBookings(fetchedBookings);
+        setVehicles(Array.isArray(fetchedVehicles) ? fetchedVehicles : []); // Ensure array
+        setBookings(Array.isArray(fetchedBookings) ? fetchedBookings : []);  // Ensure array
       } catch (err) {
         console.log(err);
       }
@@ -42,7 +42,7 @@ const Dashboard = ({ user }) => {
     try {
       const newVehicle = await addVehicle(vehicleFormData);
       setVehicles([...vehicles, newVehicle]);
-      setVehicleFormData({ make: '', model: '', year: '' }); 
+      setVehicleFormData({ make: '', model: '', year: '' });
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +70,7 @@ const Dashboard = ({ user }) => {
       const updatedBookings = bookings.map((booking) =>
         booking._id === bookingId ? { ...booking, ...bookingFormData } : booking
       );
-      setBookings(updatedBookings); 
+      setBookings(updatedBookings);
     } catch (err) {
       console.log(err);
     }
@@ -80,7 +80,7 @@ const Dashboard = ({ user }) => {
   const handleDeleteBooking = async (bookingId) => {
     try {
       await deleteBooking(bookingId);
-      setBookings(bookings.filter((booking) => booking._id !== bookingId)); 
+      setBookings(bookings.filter((booking) => booking._id !== bookingId));
     } catch (err) {
       console.log(err);
     }
@@ -93,12 +93,16 @@ const Dashboard = ({ user }) => {
       <section>
         <h2>Your Vehicles</h2>
         <ul>
-          {vehicles.map((vehicle) => (
-            <li key={vehicle._id}>
-              <p>{vehicle.make} {vehicle.model} ({vehicle.year})</p>
-              <button onClick={() => handleDeleteVehicle(vehicle._id)}>Delete Vehicle</button>
-            </li>
-          ))}
+          {Array.isArray(vehicles) && vehicles.length > 0 ? (
+            vehicles.map((vehicle) => (
+              <li key={vehicle._id}>
+                {vehicle.make} {vehicle.model} ({vehicle.year})
+                <button onClick={() => handleDeleteVehicle(vehicle._id)}>Delete Vehicle</button>
+              </li>
+            ))
+          ) : (
+            <li>No vehicles found</li>
+          )}
         </ul>
 
         <h3>Add a New Vehicle</h3>
@@ -131,38 +135,36 @@ const Dashboard = ({ user }) => {
       <section>
         <h2>Your Bookings</h2>
         <ul>
-          {bookings.map((booking) => (
-            <li key={booking._id}>
-              <p>
+          {Array.isArray(bookings) && bookings.length > 0 ? (
+            bookings.map((booking) => (
+              <li key={booking._id}>
                 Vehicle: {booking.vehicle.make} {booking.vehicle.model}<br />
                 Service: {booking.service.name}<br />
-                
                 Date: {dayjs(booking.date).format('MMMM D, YYYY')}<br />
-                
                 Time Slot: {booking.timeSlot}
-              </p>
-              
-              <h4>Update Booking</h4>
-              <form onSubmit={() => handleUpdateBooking(booking._id)}>
-                <input
-                  type="date"
-                  name="date"
-                  value={dayjs(bookingFormData.date).format('YYYY-MM-DD')}
-                  onChange={(e) => handleBookingChange(e, booking._id)}
-                />
-                <input
-                  type="text"
-                  name="timeSlot"
-                  placeholder="Time Slot"
-                  value={bookingFormData.timeSlot}
-                  onChange={(e) => handleBookingChange(e, booking._id)}
-                />
-                <button type="submit">Update Booking</button>
-              </form>
-              
-              <button onClick={() => handleDeleteBooking(booking._id)}>Delete Booking</button>
-            </li>
-          ))}
+                <h4>Update Booking</h4>
+                <form onSubmit={() => handleUpdateBooking(booking._id)}>
+                  <input
+                    type="date"
+                    name="date"
+                    value={dayjs(bookingFormData.date).format('YYYY-MM-DD')}
+                    onChange={(e) => handleBookingChange(e, booking._id)}
+                  />
+                  <input
+                    type="text"
+                    name="timeSlot"
+                    placeholder="Time Slot"
+                    value={bookingFormData.timeSlot}
+                    onChange={(e) => handleBookingChange(e, booking._id)}
+                  />
+                  <button type="submit">Update Booking</button>
+                </form>
+                <button onClick={() => handleDeleteBooking(booking._id)}>Delete Booking</button>
+              </li>
+            ))
+          ) : (
+            <li>No bookings found</li>
+          )}
         </ul>
       </section>
     </main>

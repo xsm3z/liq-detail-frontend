@@ -1,83 +1,98 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../services/authService";
 
-const SignupForm = ({ setUser }) => {
+const SignupForm = (props) => {
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     passwordConf: "",
   });
-  const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+
+  const updateMessage = (msg) => {
+    setMessage(msg);
+  };
 
   const handleChange = (e) => {
+    updateMessage("");
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.passwordConf) {
-      setMessage("Passwords don't match");
+      updateMessage("Passwords don't match");
       return;
     }
     try {
       const newUser = await authService.signup(formData);
-      setUser(newUser);
+      props.setUser(newUser);
       navigate("/dashboard");
     } catch (err) {
-      setMessage(err.message);
+      updateMessage(err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <main>
       <h1>Sign Up</h1>
       <p>{message}</p>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="passwordConf">Confirm Password:</label>
-        <input
-          type="password"
-          id="passwordConf"
-          name="passwordConf"
-          value={formData.passwordConf}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            autoComplete="off"
+            id="username"
+            value={formData.username}
+            name="username"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            autoComplete="off"
+            id="email"
+            value={formData.email}
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            autoComplete="off"
+            id="password"
+            value={formData.password}
+            name="password"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="passwordConf">Confirm Password:</label>
+          <input
+            type="password"
+            autoComplete="off"
+            id="passwordConf"
+            value={formData.passwordConf}
+            name="passwordConf"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <button type="submit">Sign Up</button>
+          <Link to="/">
+            <button type="button">Cancel</button>
+          </Link>
+        </div>
+      </form>
+    </main>
   );
 };
 

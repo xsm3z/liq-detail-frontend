@@ -13,7 +13,9 @@ const signup = async (formData) => {
     }
 
     if (json.token) {
-      localStorage.setItem("token", json.token);
+      localStorage.setItem("token", json.token); 
+      const user = JSON.parse(atob(json.token.split(".")[1]));
+      return user;
     }
 
     return json;
@@ -37,7 +39,7 @@ const signin = async (user) => {
     }
 
     if (json.token) {
-      localStorage.setItem("token", json.token);
+      localStorage.setItem("token", json.token); 
       const user = JSON.parse(atob(json.token.split(".")[1]));
       return user;
     }
@@ -58,4 +60,4 @@ const signout = () => {
   localStorage.removeItem('token');
 };
 
-export { signup, signin, getUser, signout };
+export { signup, signin, getUser, signout};

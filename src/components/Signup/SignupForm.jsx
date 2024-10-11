@@ -1,3 +1,4 @@
+import './SignupForm.css';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
@@ -37,7 +38,7 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main>
+    <div className="form-container">
       <h1>Sign Up</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
@@ -85,14 +86,14 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="button-container">
           <button type="submit">Sign Up</button>
           <Link to="/">
-            <button type="button">Cancel</button>
+            <button type="button" className="cancel-button">Cancel</button>
           </Link>
         </div>
       </form>
-    </main>
+    </div>
   );
 };
 

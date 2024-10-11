@@ -1,10 +1,11 @@
+import './SigninForm.css';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
 
 const SigninForm = (props) => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState([""]);
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,7 +24,6 @@ const SigninForm = (props) => {
     e.preventDefault();
     try {
       const user = await authService.signin(formData);
-
       props.setUser(user);
       navigate("/");
     } catch (err) {
@@ -32,12 +32,12 @@ const SigninForm = (props) => {
   };
 
   return (
-    <main>
-      <h1>Log In</h1>
+    <div className="form-container">
+      <h1>Sign In</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Username:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             autoComplete="off"
@@ -58,14 +58,14 @@ const SigninForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <button>Log In</button>
+        <div className="button-container">
+          <button type="submit">Log In</button>
           <Link to="/">
-            <button>Cancel</button>
+            <button type="button" className="cancel-button">Cancel</button>
           </Link>
         </div>
       </form>
-    </main>
+    </div>
   );
 };
 

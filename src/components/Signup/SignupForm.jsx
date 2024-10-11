@@ -1,84 +1,83 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as authService from '../../services/authService'
+import { useNavigate } from 'react-router-dom';
+import * as authService from '../../services/authService';
 
-const SignupForm = (props) => {
-  const navigate = useNavigate();
-  const [message, setMessage] = useState(['']);
+const SignupForm = ({ setUser }) => {
   const [formData, setFormData] = useState({
     username: '',
+    email: '',
     password: '',
     passwordConf: '',
   });
-
-  const updateMessage = (msg) => {
-    setMessage(msg);
-  };
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setMessage('');
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const newUserResponse = await authService.signup(formData)
-      props.setUser(newUserResponse.user);
-      navigate('/')
-    } catch (err) {
-      updateMessage(err.message)
+    e.preventDefault();
+    if (formData.password !== formData.passwordConf) {
+      setMessage("Passwords don't match");
+      return;
     }
-  }
-
-  const { username, password, passwordConf } = formData;
-
-  const isFormInvalid = () => {
-    return !(username && password && password === passwordConf);
+    try {
+      const newUser = await authService.signup(formData);
+      setUser(newUser);
+      navigate('/dashboard');
+    } catch (err) {
+      setMessage(err.message);
+    }
   };
 
   return (
-    <main>
+    <form onSubmit={handleSubmit}>
       <h1>Sign Up</h1>
       <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="name"
-            value={username}
-            name="username"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            name="password"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="confirm">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
-        </div>
-      </form>
-    </main>
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="passwordConf">Confirm Password:</label>
+        <input
+          type="password"
+          id="passwordConf"
+          name="passwordConf"
+          value={formData.passwordConf}
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
   );
 };
 

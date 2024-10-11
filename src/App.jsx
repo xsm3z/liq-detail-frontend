@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Landing from "./components/Landing";
+import NavBar from "./components/NavBar/NavBar";
+import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard";
-import SignupForm from "./components/SignupForm";
-import SigninForm from "./components/SigninForm";
+import SignupForm from "./components/Signup/SignupForm";
+import SigninForm from "./components/Signin/SigninForm";
 import Services from "./components/ServiceList";
 import * as authService from "./services/authService";
 
@@ -23,7 +23,7 @@ const App = () => {
         {user ? (
           <>
             <Route path="/" element={<Dashboard user={user} />} />
-            <Route path="/services" element={<Services />} /> 
+            <Route path="/services" element={<Services />} />
           </>
         ) : (
           <>

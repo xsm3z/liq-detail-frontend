@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as authService from '../../services/authService';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as authService from "../services/authService";
 
 const SignupForm = ({ setUser }) => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConf: '',
+    username: "",
+    email: "",
+    password: "",
+    passwordConf: "",
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setMessage('');
+    setMessage("");
   };
 
   const handleSubmit = async (e) => {
@@ -26,7 +26,7 @@ const SignupForm = ({ setUser }) => {
     try {
       const newUser = await authService.signup(formData);
       setUser(newUser);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
       setMessage(err.message);
     }

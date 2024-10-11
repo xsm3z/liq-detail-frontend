@@ -1,6 +1,6 @@
 const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
 
-export const getUserBookings = async () => {
+const getUserBookings = async () => {
   try {
     const res = await fetch(`${BACKEND_URL}/bookings`, {
       headers: {
@@ -14,7 +14,7 @@ export const getUserBookings = async () => {
   }
 };
 
-export const createBooking = async (formData) => {
+const createBooking = async (formData) => {
   try {
     const res = await fetch(`${BACKEND_URL}/bookings`, {
       method: 'POST',
@@ -31,7 +31,7 @@ export const createBooking = async (formData) => {
   }
 };
 
-export const updateBooking = async (bookingId, formData) => {
+const updateBooking = async (bookingId, formData) => {
   try {
     const res = await fetch(`${BACKEND_URL}/bookings/${bookingId}`, {
       method: 'PUT',
@@ -48,7 +48,7 @@ export const updateBooking = async (bookingId, formData) => {
   }
 };
 
-export const deleteBooking = async (bookingId) => {
+const deleteBooking = async (bookingId) => {
   try {
     const res = await fetch(`${BACKEND_URL}/bookings/${bookingId}`, {
       method: 'DELETE',
@@ -62,3 +62,5 @@ export const deleteBooking = async (bookingId) => {
     throw err;
   }
 };
+
+export {getUserBookings, createBooking, updateBooking, deleteBooking};

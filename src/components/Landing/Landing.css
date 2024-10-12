@@ -1,4 +1,4 @@
-.main-container {
+.landing-main-container {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
   display: flex;
@@ -6,8 +6,8 @@
   align-items: center;
 }
 
-.hero-section {
-  background-color: #2c3e50;
+.landing-hero-section {
+  background: linear-gradient(135deg, #2c3e50, #30729e);
   color: #ecf0f1;
   padding: 5rem 2rem;
   width: 100%;
@@ -17,45 +17,34 @@
   align-items: center;
 }
 
-.hero-section h1 {
+.landing-hero-section h1 {
   font-size: 3.5rem;
   font-weight: bold;
-  margin-bottom: 8rem;
-}
-
-.hero-section h2 {
-  font-size: 2rem;
   margin-bottom: 1.5rem;
 }
 
-.hero-section p {
+.landing-hero-section p {
   font-size: 1.2rem;
   color: #bdc3c7;
   margin: 0 auto;
   max-width: 700px;
 }
 
-.services-section {
+.landing-services-section {
   padding: 3rem 2rem;
   background-color: #fff;
   width: 100%;
   text-align: center;
 }
 
-.services-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2.5rem;
-  color: #2c3e50;
-}
-
-.services-container {
+.landing-services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 0 auto;
 }
 
-.service-box {
+.landing-service-box {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -64,18 +53,18 @@
   text-align: center;
 }
 
-.service-box h3 {
+.landing-service-box h3 {
   font-size: 1.7rem;
   margin-bottom: 1rem;
   color: #2c3e50;
 }
 
-.service-box p {
+.landing-service-box p {
   font-size: 1.1rem;
   color: #7f8c8d;
 }
 
-.footer {
+.landing-footer {
   background-color: #1c2833;
   color: #ecf0f1;
   text-align: center;
@@ -83,7 +72,7 @@
   width: 100%;
 }
 
-.footer p {
+.landing-footer p {
   margin: 0;
   font-size: 0.9rem;
 }

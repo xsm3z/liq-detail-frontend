@@ -1,7 +1,7 @@
-import './SignupForm.css';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as authService from "../../services/authService";
+import './SignupForm.css';
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -29,9 +29,8 @@ const SignupForm = (props) => {
       return;
     }
     try {
-      const newUser = await authService.signup(formData);
-      props.setUser(newUser);
-      navigate("/dashboard");
+      await authService.signup(formData); // Signup the user but don't log them in
+      navigate("/signin"); // Redirect to signin after successful signup
     } catch (err) {
       updateMessage(err.message);
     }

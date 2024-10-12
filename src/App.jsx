@@ -5,7 +5,7 @@ import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/Signup/SignupForm";
 import SigninForm from "./components/Signin/SigninForm";
-import Services from "./components/ServiceList";
+import Services from "./components/ServiceList/ServiceList";
 import * as authService from "./services/authService";
 
 const App = () => {

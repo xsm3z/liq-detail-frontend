@@ -29,8 +29,8 @@ const SignupForm = (props) => {
       return;
     }
     try {
-      await authService.signup(formData); // Signup the user but don't log them in
-      navigate("/signin"); // Redirect to signin after successful signup
+      await authService.signup(formData); 
+      navigate("/signin"); 
     } catch (err) {
       updateMessage(err.message);
     }

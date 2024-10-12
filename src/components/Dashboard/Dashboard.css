@@ -1,0 +1,131 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f9f9f9bd;
+  font-family: 'Arial', sans-serif;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 2rem;
+}
+
+.dashboard-section {
+  width: 100%;
+  max-width: 900px;
+  background-color: #ffffffea;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.vehicles-list,
+.bookings-list {
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.vehicle-item,
+.booking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2f4;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.booking-info p {
+  margin: 0;
+  color: #34495e;
+}
+
+.booking-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-input {
+  width: 90%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.submit-btn {
+  padding: 0.8rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #2980b9;
+}
+
+.add-vehicle-btn {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #3498db;
+  transition: color 0.3s ease;
+}
+
+.add-vehicle-btn:hover {
+  color: #13517b;
+}
+
+.delete-btn {
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.booking-update {
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.booking-update:hover {
+  background-color: #2980b9;
+}
+
+.booking-delete {
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.booking-delete:hover {
+  background-color: #c0392b;
+}
+

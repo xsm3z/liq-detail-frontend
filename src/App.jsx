@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Landing from "./components/Landing/Landing";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/Signup/SignupForm";
 import SigninForm from "./components/Signin/SigninForm";
 import Services from "./components/ServiceList";

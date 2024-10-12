@@ -1,4 +1,4 @@
-import './Landing.css';
+import "./Landing.css";
 
 const Landing = () => {
   return (
@@ -8,8 +8,8 @@ const Landing = () => {
           <h1>Welcome to Liq.Detail</h1>
           <p>
             At Liq.Detail, we specialize in premium detailing services to keep
-            your vehicle looking and feeling brand new. Whether it's a maintenance
-            wash or a full paint correction, we've got you covered.
+            your vehicle looking and feeling brand new. Whether it's a
+            maintenance wash or a full paint correction, we've got you covered.
           </p>
         </div>
       </section>
@@ -38,12 +38,19 @@ const Landing = () => {
             </p>
           </div>
         </div>
+
+        <div className="landing-coming-soon">
+          <h3>Coming Soon</h3>
+          <ul className="coming-soon-list">
+            <li>Tint Installation</li>
+            <li>Paint Protection Film (PPF)</li>
+            <li>Vinyl Wrap Installations</li>
+          </ul>
+        </div>
       </section>
 
       <footer className="landing-footer">
-        <p>
-          For more information, contact us at info@liqdetail.com.
-        </p>
+        <p>For more information, contact us at info@liqdetail.com.</p>
       </footer>
     </main>
   );

@@ -1,4 +1,4 @@
-https://github.com/xsm3z/liq-detail-frontend/blob/main/src/assets/liq-detail.jpq
+![Liq.Detail Logo](./assets/liq-detail.jpg)
 
 ## **Table of Contents**
 - [Introduction](#introduction)

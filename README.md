@@ -1,4 +1,4 @@
-![Liq.Detail Logo](./assets/liq-detail.jpg)
+![Liq.Detail Logo](https://www.dropbox.com/home?preview=liq-detail.jpg)
 
 ## **Table of Contents**
 - [Introduction](#introduction)

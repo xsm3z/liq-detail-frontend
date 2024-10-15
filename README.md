@@ -1,4 +1,8 @@
-![Liq.Detail Logo](./src/assets/liq-detail.jpg)
+<div align="center">
+  <img src="./src/assets/liq-detail.jpg" alt="Liq.Detail Logo" width="300"/>
+</div>
+
+# **Liq.Detail App**
 
 ## **Table of Contents**
 - [Introduction](#introduction)
